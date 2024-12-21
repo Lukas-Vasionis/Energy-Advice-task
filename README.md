@@ -12,4 +12,6 @@ Rezultatus atvaizduoti galima keliais būdais:
 - On premise:
   - Paleidžiant main.py
   - Terminale paleidžiant `streamlit run ./streamlit_app.py`
-  - Užeinant į online aplikaciją: 
+- Online, užeinant į online aplikaciją : https://energy-advice-task.streamlit.app/
+  - Aplikacija duomenis ir kodą ima iš github repozitorijos.
+  - Note: gali tekt palaukt. kol užkraus, jei kelias dienas į aplikacija nebuvo užeita

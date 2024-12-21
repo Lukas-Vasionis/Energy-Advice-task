@@ -11,19 +11,25 @@ st.markdown(
     ### 1 Užduotis:
     
     Sukurta klasė duomenų nuskaitymui ją rasite models.DataMeteo
-    Klasė reikalauja pateikti prognozinių ir/arba istorinių duomenų vietoves identificatorius
+    
+    Klasėje reikia pateikti prognozinių ir/arba istorinių duomenų vietoves identificatorius
      - station_code - istoriniams duomenims
      - place_code - prognoziniams duomenims
     
     
-    Klasė turi reikalaujamus metodus:
-    - **get_historic_data(self, date_from, date_to, path_df_from_csv=None)** detalesnį aprašymą rasite kode
+    Klasei sukurti pražomi metodai:
+    - **get_historic_data(self, date_from, date_to, path_df_from_csv=None)** - detalesnį aprašymą rasite kode
       - processas suskaidytas į dvi dalis - duomenų nusiėmimą ir duomenų apdorojimą 
-        - *Duomenų nuskaitymas* vyksta iteruojant per datas tarp date_from ir date_to. Nusiimt metinius duomenis užtrunka, 
-        nes yra API apribojimas: 180 užklausų per minutę. Del to pridėjau papildomą algoritmą kad sumažinti užklausų dažnį. Dėl šios priežasties pridėjau papildomą argumentą `path_df_from_csv` tam kad nereiktų kas kartą nusiiminėti duomenų per API
-        - *Duomenų apdorojimo*  žingsnis tik prideda reikalujama index'ą
+        - *Duomenų nuskaitymas* vyksta iteruojant per datas tarp date_from ir date_to. 
+            - Nusiimt metinius duomenis užtrunka, 
+        nes yra API apribojimas: 180 užklausų per minutę. Del to pridėjau papildomą algoritmą kad sumažinti užklausų dažnį. 
+            -   Dėl šio apribojimo prailgsta duomenų nusiėmimas. 
+                -   Dėlto pridėjau metoda nusiimtų duomenų išsaugojimaui `DataMeteo.save_historic_data()` 
+                -   O į `DataMeteo.get_historic_data()` pridėjau argumentą `path_df_from_csv` duomenų nuskaitymui iš failo o ne iš API
+        - *Duomenų apdorojimo*  žingsnis tik prideda užduotyje reikalujamą index'ą
       - Istoriniai duomenys patalpinami į self.historic_data atributą
     - **get_forecast_data()** procesas suskaidytas į tas pačias dalis: duomenų gavimas ir apdorojimas
+        - Kadangi duomenys maži, jiems išsaugojimo/užkrovimo mechanizmų nesukūriau 
     
     ---
     
